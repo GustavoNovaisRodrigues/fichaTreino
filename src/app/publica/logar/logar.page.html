@@ -1,0 +1,57 @@
+<ion-content class="ion-no-padding">
+
+  <div class="div-bigHeader">
+    <h1 class="titulo-page ">
+      <span class="texto ">Academia Gym <br></span>
+      <span class="icone">🏋️‍♀️</span>
+    </h1>
+  </div>
+
+  <div class="div-container">
+
+    <div class="div-btnColumn">
+
+
+      <a class="btn-outline">
+        <span class="nome">
+          <ion-icon class="logo" slot="start" name="logo-facebook"></ion-icon>Facebook
+        </span>
+        <ion-icon class="arrow" slot="start" name="ios-arrow-forward"></ion-icon>
+      </a>
+
+      <a class="btn-outline">
+        <span class="nome">
+          <ion-icon class="logo" slot="start" name="logo-google"></ion-icon>Conta google
+        </span>
+        <ion-icon class="arrow" slot="start" name="ios-arrow-forward"></ion-icon>
+      </a>
+
+      <a class="btn-outline" (click)="irUsuarioSenha()">
+        <span class="nome">
+          <ion-icon class="logo" slot="start" name="contact"></ion-icon>
+          Usuario e senha
+        </span>
+        <ion-icon class="arrow" slot="start" name="ios-arrow-forward"></ion-icon>
+      </a>
+    </div>
+
+
+    <div class="div-aviso">
+      <ion-icon class="icone icone-destaque" slot="start" name="desktop"></ion-icon>
+      <p class="texto texto-padrao">
+        Se você ainda não é cadastrado <a class="link link-upper" (click)="irCadastrar();">Cadastre-se aqui.</a>. <br>
+        Autentique sua conta cadastrada na academia para obter acesso ao aplicativo.<br>
+        <a class="link link-upper">entrar em contato</a>
+
+      </p>
+    </div>
+
+    <!-- div-container -->
+  </div>
+
+  <div class="div-footer">
+    <span class="copy  texto-padrao">
+      Copyright © 2019 ACADEMIA. All rights reserved.
+    </span>
+  </div>
+</ion-content>

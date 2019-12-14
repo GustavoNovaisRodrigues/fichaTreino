@@ -1,0 +1,8 @@
+.div-container {
+  width: 100%;
+  min-height: 60%;
+  background: $cor-bg2;
+  padding: 10px;
+
+  @include colunasCentro();
+}

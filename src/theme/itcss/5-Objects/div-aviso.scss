@@ -1,0 +1,18 @@
+.div-aviso {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 650px;
+  > .icone {
+    width: 100px;
+    font-size: 32px;
+    margin: 1rem 0;
+  }
+  > .texto {
+    width: 100%;
+    > .link {
+      margin: 0.625rem 0;
+    }
+  }
+}

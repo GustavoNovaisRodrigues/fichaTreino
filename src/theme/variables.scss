@@ -75,3 +75,19 @@
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
+
+/* Custon: ITCSS  imports*/
+
+@import "itcss/1-Settings/config.scss";
+@import "itcss/2-Tools/tools.scss";
+@import "itcss/5-Objects/div-bigHeader.scss";
+@import "itcss/5-Objects/div-container.scss";
+@import "itcss/5-Objects/div-btnColumn.scss";
+@import "itcss/5-Objects/div-aviso.scss";
+@import "itcss/5-Objects/div-footer.scss";
+@import "itcss/5-Objects/div-input.scss";
+@import "itcss/6-Components/titulo-page.scss";
+@import "itcss/6-Components/btn-outline.scss";
+@import "itcss/6-Components/link-upper.scss";
+@import "itcss/6-Components/icone-destaque.scss";
+@import "itcss/6-Components/texto-padrao.scss";

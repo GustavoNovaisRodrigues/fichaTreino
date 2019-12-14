@@ -1,0 +1,7 @@
+.div-btnColumn {
+  width: 100%;
+  @include colunasCentro();
+  > a {
+    margin: 10px;
+  }
+}

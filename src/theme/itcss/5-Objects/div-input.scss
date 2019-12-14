@@ -1,0 +1,22 @@
+.div-input {
+  background-color: rgba($color: #fff, $alpha: 0.1);
+  > .label {
+  }
+  > .input {
+    width: 275px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 3px;
+    outline: 0;
+    box-shadow: none;
+    border: 0;
+  }
+  > .input::placeholder {
+    color: blue;
+    font-size: 1.5em;
+  }
+  > .icon {
+  }
+  > .message {
+  }
+}
