@@ -14,4 +14,38 @@
   > .arrow {
     font-size: $size-arrowBtn;
   }
+
+  &.outline {
+    border: 1px solid $cor-textLight;
+    box-sizing: border-box;
+    border-radius: 20px;
+    text-decoration: none;
+    padding: 0 1rem;
+    color: $cor-textLight;
+    justify-content: space-between;
+    > .nome {
+      font-size: $size-fontBtn;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      > .logo {
+        font-size: $size-logoBtn;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  &.primary {
+    background: linear-gradient(90deg, #f27a54 0%, #a154f2 100%);
+    border-radius: 20px;
+    justify-content: center;
+    position: relative;
+    > .nome {
+      line-height: 12px;
+    }
+    > .arrow {
+      position: absolute;
+      right: 10px;
+    }
+  }
 }
