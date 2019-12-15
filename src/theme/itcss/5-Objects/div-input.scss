@@ -1,22 +1,46 @@
 .div-input {
-  background-color: rgba($color: #fff, $alpha: 0.1);
+  @include colunasAlinhadoAEsquerda;
+  // background-color: rgba($color: #fff, $alpha: 0.1);
+  margin-bottom: 20px;
   > .label {
+    text-transform: uppercase;
+    font-size: $size-fontBtn;
+    line-height: 18px;
+    color: $cor-textShade;
   }
   > .input {
-    width: 275px;
-    height: 40px;
+    min-width: 275px;
+    min-height: 40px;
     background: #ffffff;
     border-radius: 3px;
     outline: 0;
     box-shadow: none;
     border: 0;
+    padding: 0 18px;
+    position: relative;
   }
   > .input::placeholder {
-    color: blue;
-    font-size: 1.5em;
+    font-size: $size-fontBtn + 4;
+    line-height: 22px;
+    color: #747d88;
+  }
+  > .input:invalid {
+    border-left: 5px solid $cor-invalid;
+  }
+  > .input:valid {
+    border-left: 5px solid $cor-acept;
   }
   > .icon {
+    position: absolute;
+    align-self: flex-end;
+    height: 36px;
+    width: 36px;
+    color: $cor-textDark;
+    cursor: pointer;
   }
   > .message {
+    font-size: $size-fontBtn;
+    line-height: 18px;
+    color: $cor-textShade;
   }
 }

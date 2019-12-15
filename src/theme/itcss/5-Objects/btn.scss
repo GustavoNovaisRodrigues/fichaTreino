@@ -1,0 +1,17 @@
+.btn {
+  min-width: 250px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  > .nome {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: $size-fontBtn;
+    text-transform: uppercase;
+  }
+  > .arrow {
+    font-size: $size-arrowBtn;
+  }
+}

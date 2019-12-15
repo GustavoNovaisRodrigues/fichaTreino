@@ -5,4 +5,7 @@
   padding: 10px;
 
   @include colunasCentro();
+  &._marginItens > * {
+    margin: 20px 0;
+  }
 }

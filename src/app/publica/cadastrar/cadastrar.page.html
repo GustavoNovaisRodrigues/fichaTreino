@@ -9,27 +9,32 @@
   <div class="div-container">
 
     <div class="div-input">
-      <label class="label" for="User">usuario</label>
-      <input class="input" type="text" name="Name" placeholder="Nome do usuario" />
+      <label class="label" for="email">E-mail</label>
+      <input class="input" type="email" name="email" placeholder="exemplo@email.com..." required />
       <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
     </div>
 
     <div class="div-input">
-      <label class="label" for="senha">senha</label>
-      <input class="input" type="password" name="senha" />
-      <ion-icon class="icon" slot="end" name="eye"></ion-icon>
+      <label class="label" for="nome">Nome</label>
+      <input class="input" type="text" name="nome" placeholder="Seu Nome..." required minlength="3" />
       <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
     </div>
 
-    <button>logar <ion-icon class="arrow" slot="end" name="ios-arrow-forward"></ion-icon></button>
+    <div class="div-input">
+      <label class="label" for="senha">Senha</label>
+      <input class="input" type="text" name="senha" placeholder="sennha de acesso..." required minlength="4" />
+      <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
+    </div>
 
 
-    <fieldset>
-      <legend>Legenda</legend>
-      <label for="Texto">texto</label>
-      <input type="email" name="email" id=" ">
-      
-    </fieldset>
+    <button class="btn btn-primary">
+      <span class="nome">
+        Cadastrar
+      </span>
+      <ion-icon class="arrow" slot="end" name="ios-arrow-forward"></ion-icon>
+    </button>
+
+
     <!-- div-container -->
   </div>
 

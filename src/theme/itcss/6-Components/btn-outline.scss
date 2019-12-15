@@ -1,18 +1,12 @@
 .btn-outline {
-  min-width: 222px;
-  min-height: 40px;
   border: 1px solid $cor-textLight;
   box-sizing: border-box;
   border-radius: 20px;
   text-decoration: none;
   padding: 0 1rem;
   color: $cor-textLight;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  text-transform: uppercase;
   > .nome {
-    font-weight: bold;
     font-size: $size-fontBtn;
     letter-spacing: 2px;
     display: flex;
