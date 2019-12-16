@@ -1,0 +1,20 @@
+.btn-outline {
+  @extend .btn-base;
+  border: 1px solid $cor-textLight;
+  box-sizing: border-box;
+  border-radius: 20px;
+  text-decoration: none;
+  padding: 0 1rem;
+  color: $cor-textLight;
+  justify-content: space-between;
+  > .nome {
+    font-size: $size-fontBtn;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    > .logo {
+      font-size: $size-logoBtn;
+      padding-right: 10px;
+    }
+  }
+}
