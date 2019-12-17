@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,9 @@ import { CadastrarPage } from './cadastrar.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CadastrarPageRoutingModule
+    CadastrarPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [CadastrarPage]
 })
-export class CadastrarPageModule {}
+export class CadastrarPageModule { }
