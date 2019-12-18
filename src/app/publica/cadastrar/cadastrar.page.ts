@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CadastrarPage implements OnInit {
 
   formCadastrar: FormGroup
-  
+
   constructor(public authService: AuthService, public fb: FormBuilder) { }
 
   ngOnInit() {
@@ -49,8 +49,10 @@ export class CadastrarPage implements OnInit {
 
   async cadastrar() {
     if (this.formCadastrar.invalid) return console.log('[Cadastrar Cancelado!!]:')
-    await this.authService.cadastrarUsuarioSenha(this.novoUsuario, this.senha.value)
-    console.log('[Cadastrar finalizado]:')
+    let resposta = await this.authService.cadastrarUsuarioSenha(this.novoUsuario, this.senha.value)
+
+    if (!resposta.sucesso) return console.log('[Mensagem do cadastro falha]:', resposta.mensagem)
+    console.log('[Mensagem do cadastro sucesso!!]:', resposta.mensagem)
   }
 
 
