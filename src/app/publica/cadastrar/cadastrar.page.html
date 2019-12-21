@@ -15,28 +15,29 @@
 
   <div class="div-container">
 
-    
-
-    <form [formGroup]="formCadastrar" (ngSubmit)="cadastrar()">
+    <form [formGroup]="formCadastrar" (ngSubmit)="cadastrar()" class="div-container">
       <div class="div-input">
         <label class="label" for="nome">Nome</label>
-        <input required formControlName="nome" class="input" type="text" name="nome" placeholder="Seu Nome..." required minlength="3" />
+        <input required formControlName="nome" class="input" type="text" name="nome" placeholder="Seu Nome..." required
+          minlength="3" />
         <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
       </div>
 
       <div class="div-input">
         <label class="label" for="email">E-mail</label>
-        <input required formControlName="email" class="input" type="email" name="email" placeholder="exemplo@email.com..." required />
+        <input required formControlName="email" class="input" type="email" name="email"
+          placeholder="exemplo@email.com..." required />
         <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
       </div>
 
       <div class="div-input">
         <label class="label" for="senha">Senha</label>
-        <input required formControlName="senha" class="input" type="text" name="senha" placeholder="sennha de acesso..." required minlength="4" />
+        <input required formControlName="senha" class="input" type="text" name="senha" placeholder="sennha de acesso..."
+          required minlength="4" />
         <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
       </div>
 
-      <button block  type="submit" class="btn-primary" [disabled]="formCadastrar.invalid">
+      <button block type="submit" class="btn-primary" [disabled]="formCadastrar.invalid">
         <span class="nome">
           Cadastrar
         </span>

@@ -1,0 +1,30 @@
+<ion-content class="ion-no-padding">
+  <h1 class="titulo-page ">
+    <span class="texto ">DashBoard Cliente<br></span>
+    <span class="icone">🏋️‍♀️</span>
+  </h1>
+
+  <div class="div-container _marginItens">
+
+
+    <pre>
+
+        {{ usuario | async | json }}
+      </pre>
+
+    <a class="btn-outline" (click)="deslogar()">
+      <span class="nome">
+        <ion-icon class="logo" slot="start" name="log-out"></ion-icon>
+        Deslogar
+      </span>
+      <ion-icon class="arrow" slot="start" name="ios-arrow-forward"></ion-icon>
+    </a>
+    <!-- div-container -->
+  </div>
+
+  <div class="div-footer">
+    <span class="copy  texto-padrao">
+      Copyright © 2019 ACADEMIA. All rights reserved.
+    </span>
+  </div>
+</ion-content>

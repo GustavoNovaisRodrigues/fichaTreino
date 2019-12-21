@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'cadastrar',
     loadChildren: () => import('./publica/cadastrar/cadastrar.module').then( m => m.CadastrarPageModule)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./privada/cliente/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+
 ];
 
 @NgModule({

@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MensagenRetornoService } from './mensagen-retorno.service';
 
 
 @Injectable({
@@ -16,17 +17,32 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
 
   readonly _path = "usuarios/"
-  user$: Observable<Usuario>;
+  private user$: Observable<Usuario>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private ms: MensagenRetornoService
   ) {
-    this.checaUsuarioLogado()
+    this._checaUsuarioLogado()
   }
 
+  /*
+  *
+  *
+  *               METODOS PUBLICOS 
+  *
+  *
+  */
 
+  /**
+   * Desloga o usuario logado e redireciona ele para pagina raiz
+   */
+  async deslogar() {
+    await this.afAuth.auth.signOut();
+    this.router.navigate(['/']);
+  }
   /**
    * Faz o cadastro do novo usuario com email e senha
    * retorna promise<boolean>
@@ -35,61 +51,74 @@ export class AuthService {
     try {
       // cadastro no authentication
       const credetial: auth.UserCredential = await this.afAuth.auth.createUserWithEmailAndPassword(novoUsuario.email, senha)
-      if (!credetial) throw <MensagemRetorno>{
-        sucesso: false,
-        mensagem: 'Desculpe, houve um problema com o servidor. Por favor tente novamente mais tarde.'
-      };;
-      // cadastra no firestore
-      const usuario: Usuario = {
-        uid: credetial.user.uid,
-        email: novoUsuario.email,
-        displayName: novoUsuario.displayName || '',
-        photoURL: novoUsuario.photoURL || ''
-      }
-      await this.afs.doc<Usuario>(`${this._path}${credetial.user.uid}`).set(usuario)
-      return <MensagemRetorno>{
-        sucesso: true,
-        mensagem: 'Cadastrado realizado com sucesso!'
-      }
+      if (!credetial) throw this.ms.mensagem(false, '❌ Desculpe, houve um problema com o servidor. Por favor tente novamente mais tarde.')
+      // cadastro no firestore
+      await this._atualizarDadosDoUsuario(novoUsuario, credetial.user.uid)
+      return this.ms.mensagem(true, '✅ Cadastrado realizado com sucesso!')
     } catch (error) {
-      let traducaoMensagens = [{
-        code: 'auth/email-already-in-use',
-        message: 'Já existe uma conta com esse e-mail.'
-      },
-      {
-        code: 'auth/invalid-email',
-        message: 'Este e-mail não é válido '
-      },
-      {
-        code: 'auth/operation-not-allowed',
-        message: 'A conta não pode ser ativada.'
-      },
-      {
-        code: 'auth/weak-password',
-        message: 'A senha não é forte o suficiente. Mínimo de 6 caracteres'
-      }]
-      let mensagenErro = traducaoMensagens.filter(data => (data.code == error.code))
-      if (mensagenErro.length < 1) return error
-      return <MensagemRetorno>{
-        sucesso: false,
-        mensagem: mensagenErro[0].message
-      }
+      return this._erroCadastrarUsuarioSenha(error)
     }
   }
 
 
+  /*
+  *
+  *
+  *               METODOS PRIVADOS
+  *
+  *
+  */
 
-  async googleSignin() {
-    const provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user);
+
+  /**
+   * traduz o erro do firebase.auth.autentication ou retorna MensagemRetorno
+   * @param error erro do autentication ou MensagemRetorno
+   */
+  private _erroCadastrarUsuarioSenha(error: any): MensagemRetorno {
+    const traducaoMensagens = [{
+      code: 'auth/email-already-in-use',
+      message: '❌ Este e-mail já está cadastrado.'
+    },
+    {
+      code: 'auth/invalid-email',
+      message: '❌ Este e-mail não é válido '
+    },
+    {
+      code: 'auth/operation-not-allowed',
+      message: '❌ A conta não pode ser ativada.'
+    },
+    {
+      code: 'auth/weak-password',
+      message: '❌ A senha não é forte o suficiente. Mínimo de 6 caracteres'
+    }]
+    //verifica se tem o mesmo codigo para a tradução
+    let mensagenErro = traducaoMensagens.filter(data => (data.code == error.code))
+    if (mensagenErro.length < 1) return error //se n retorna o MensagemRetorno
+    return this.ms.mensagem(false, mensagenErro[0].message)
+  }
+
+  /**
+    * atualiza usuario existente ou cria um novo usuario
+    * @param dadosUsuario 
+    * @param idUsuario uid do usuario a ser atualizado ou criado
+    */
+  private async _atualizarDadosDoUsuario(dadosUsuario: Usuario, idUsuario?: string) {
+    // cadastra no firestore
+    const referencia: AngularFirestoreDocument<Usuario> = this.afs.doc<Usuario>(`${this._path}${idUsuario}`)
+    const usuario: Usuario = {
+      uid: idUsuario || dadosUsuario.uid,
+      email: dadosUsuario.email,
+      displayName: dadosUsuario.displayName || '',
+      photoURL: dadosUsuario.photoURL || ''
+    }
+    return await referencia.set(usuario, { merge: true })
   }
 
   /**
    * Checa estado do usuario logado e seta observable user$
    * retorna observable de dados do usuario logado ou null
    */
-  private checaUsuarioLogado(): void {
+  private _checaUsuarioLogado(): void {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => { // Logged in
         if (user) {
@@ -101,19 +130,21 @@ export class AuthService {
     )
   }
 
-  private updateUserData(user) {
-    const userRef: AngularFirestoreDocument<Usuario> = this.afs.doc(`users/${user.uid}`);
-    const data = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL
-    }
-    return userRef.set(data, { merge: true })
+  /*
+  *
+  *
+  *               GETTERS
+  * 
+  *
+  */
+  get usuario$(): Observable<Usuario | null> {
+    return this.user$
   }
 
-  async signOut() {
-    await this.afAuth.auth.signOut();
-    this.router.navigate(['/']);
-  }
+  // async googleSignin() {
+  //   const provider = new auth.GoogleAuthProvider();
+  //   const credential = await this.afAuth.auth.signInWithPopup(provider);
+  //   return this.updateUserData(credential.user);
+  // }
+
 }
