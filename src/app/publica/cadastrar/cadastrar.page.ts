@@ -14,10 +14,12 @@ export class CadastrarPage implements OnInit {
 
   formCadastrar: FormGroup
 
-  constructor(public authService: AuthService,
+  constructor(
+    public authService: AuthService,
     public fb: FormBuilder,
     public loadingController: LoadingController,
-    public toastController: ToastController, private router: Router) { }
+    public toastController: ToastController, 
+    private router: Router) { }
 
   ngOnInit() {
     this._formInit()
