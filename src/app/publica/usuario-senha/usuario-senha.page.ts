@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MensagemService } from 'src/app/services/mensagem.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-usuario-senha',
@@ -15,12 +16,7 @@ export class UsuarioSenhaPage implements OnInit {
   mostrarSenha = false
   typeInput = 'password'
   nameIcon = 'eye-off'
-  get email() {
-    return this.formLogar.get('email')
-  }
-  get senha() {
-    return this.formLogar.get('senha')
-  }
+
   constructor(
     public authService: AuthService,
     public fb: FormBuilder,
@@ -30,6 +26,14 @@ export class UsuarioSenhaPage implements OnInit {
   ngOnInit() {
     this._formInit()
   }
+  /*
+  *
+  *
+  *               METODOS PUBLICOS
+  *
+  *
+  */
+
   async logar() {
     let load = await this.ms.apresentarLoading()
 
@@ -39,12 +43,21 @@ export class UsuarioSenhaPage implements OnInit {
     if (!resposta.sucesso) return this.ms.apresentarMensagem(resposta.mensagem)
     this.ms.apresentarMensagem(resposta.mensagem)
     this._redirecionar()
+
   }
   visualizarSenha() {
     this.mostrarSenha = !this.mostrarSenha;
     (this.mostrarSenha) ? this.typeInput = 'text' : this.typeInput = 'password';
     (this.mostrarSenha) ? this.nameIcon = 'eye' : this.nameIcon = 'eye-off';
   }
+  /*
+  *
+  *
+  *               METODOS PRIVADOS
+  *
+  *
+  */
+
   /**
   * inicia o formulario
   */
@@ -60,13 +73,30 @@ export class UsuarioSenhaPage implements OnInit {
       ]],
     })
   }
-
-
   /**
-     * redireciona o usuario cadastrado
-     */
+  * redireciona o login do usuario para o local correto 
+  */
   private _redirecionar() {
-    //TODO verificar se é admin professor ou cliente e redirecionar para o lugar certo
-    this.router.navigate(['/dashboard'])
+    this.authService.usuario$
+      .pipe(take(1))
+      .subscribe((usuario) => {
+        if (!usuario) return console.log('== usuario nao encontrado==>>');
+        if (usuario.nivel == 'cliente') return this.router.navigate(['/dashboard']);
+        if (usuario.nivel == 'professor') return console.log('==Redireciona professor==>>');
+        if (usuario.nivel == 'gerente') return console.log('==Redireciona gerente==>>');
+      }, null, () => console.log('==> completo!'))
+  }
+  /*
+  *
+  *
+  *               GETTERS
+  *
+  *
+  */
+  get email() {
+    return this.formLogar.get('email')
+  }
+  get senha() {
+    return this.formLogar.get('senha')
   }
 }

@@ -15,19 +15,18 @@
   </div>
 
   <div class="div-container">
-    <!--  // TODO ageitar as mensagens dos inputs -->
     <form class="div-container" [formGroup]="formLogar" (ngSubmit)="logar()">
       <div class="div-input">
-        <label class="label" for="User">usuario</label>
+        <label class="label" for="User">E-mail:</label>
         <input class="input" required formControlName="email" type="text" name="email" placeholder="E-mail..." />
-        <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
+        <span class="message">Digite o e-mail cadastrado</span>
       </div>
 
       <div class="div-input">
         <label class="label" for="senha">senha</label>
         <input class="input" required formControlName="senha" [type]="typeInput" name="senha" placeholder="Senha..." />
         <ion-icon class="icon" slot="end" [name]="nameIcon" (click)="visualizarSenha()"></ion-icon>
-        <span class="message">Digite o nome do exercicio ou escolha um ja cadastrado</span>
+        <span class="message">Digite o sua senha</span>
       </div>
 
       <button class="btn-primary" type="submit" [disabled]="formLogar.invalid" >

@@ -33,7 +33,7 @@ export class MensagemService {
       position: 'top',
       duration: 3000
     });
-    toast.present();
+    return toast.present();
   }
   /**
    * apresenta o loaging
