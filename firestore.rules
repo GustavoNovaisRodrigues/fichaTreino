@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+        allow read, write: if false;
+    }
+    
+    match /usuarios/{idUsuario}{
+        //casos
+        function casoCriarNovo(idUsuario){
+            return request.auth.uid != null && criandoCliente() && serDonoDaConta(idUsuario)
+        }
+        function casoClienteUpdate(idUsuario){
+            return  (naoPodeMudarNivel() &&  serDonoDaConta(idUsuario) && isCliente(idUsuario))
+        }
+        function casoProfessorUpdate(idUsuario){
+            return (naoPodeMudarNivel() && donoDaContaForCliente() && isProfessor(idUsuario)) || 
+                   (naoPodeMudarNivel() && isProfessor(idUsuario) && serDonoDaConta(idUsuario))
+        }
+        function casoGerenteUpdate(idUsuario){
+            return isGerente(idUsuario)
+        }
+        //regras
+        allow read: if request.auth.uid != null;
+        allow create: if casoCriarNovo(idUsuario);        
+        allow update: if casoClienteUpdate(idUsuario) || casoProfessorUpdate(idUsuario) || casoGerenteUpdate(idUsuario)   ;
+        allow delete: if isGerente(idUsuario); 
+
+        // helppers
+        function naoPodeMudarNivel(){return  request.resource.data.nivel == resource.data.nivel}   
+        function serDonoDaConta(idUsuario){ return request.auth.uid == idUsuario }
+        function donoDaContaForCliente(){return resource.data.nivel == 'cliente'}
+        function criandoCliente(){return request.resource.data.nivel == 'cliente'}
+        function isCliente(idUsuario){return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.nivel == 'cliente';}
+        function isProfessor(idUsuario){return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.nivel == 'professor';}
+        function isGerente(idUsuario){return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.nivel == 'gerente'; }    
+    }      
+    
+  }
+  
+}
+

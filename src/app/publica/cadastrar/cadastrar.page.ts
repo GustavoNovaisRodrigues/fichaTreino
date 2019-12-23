@@ -2,8 +2,8 @@ import { Usuario } from './../../interfaces/usuario';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { MensagemService } from 'src/app/services/mensagem.service';
 
 @Component({
   selector: 'app-cadastrar',
@@ -17,8 +17,7 @@ export class CadastrarPage implements OnInit {
   constructor(
     public authService: AuthService,
     public fb: FormBuilder,
-    public loadingController: LoadingController,
-    public toastController: ToastController, 
+    private ms: MensagemService,
     private router: Router) { }
 
   ngOnInit() {
@@ -36,14 +35,12 @@ export class CadastrarPage implements OnInit {
    * efetua o cadastro , apresenta mensagem e redireciona se cadastrado com sucesso!
    */
   async cadastrar() {
-    let load = await this._apresentarLoading()
-
+    let load = await this.ms.apresentarLoading()
     if (this.formCadastrar.invalid) return console.log('[Cadastrar Cancelado!!]:')
     let resposta = await this.authService.cadastrarUsuarioSenha(this.novoUsuario, this.senha.value)
-
     load.dismiss()
-    if (!resposta.sucesso) return this._apresentarMensagem(resposta.mensagem)
-    this._apresentarMensagem(resposta.mensagem)
+    if (!resposta.sucesso) return this.ms.apresentarMensagem(resposta.mensagem)
+    this.ms.apresentarMensagem(resposta.mensagem)
     this._redirecionar()
   }
 
@@ -74,28 +71,7 @@ export class CadastrarPage implements OnInit {
       ]],
     })
   }
-  /**
-   * apresenta a mensagem 
-   * @param mensagem mensagem do toltip
-   */
-  private async _apresentarMensagem(mensagem: string) {
-    const toast = await this.toastController.create({
-      message: mensagem,
-      position: 'top',
-      duration: 3000
-    });
-    toast.present();
-  }
-  /**
-   * apresenta o loaging
-   */
-  private async _apresentarLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Um momento por favor...',
-    });
-    await loading.present();
-    return loading
-  }
+
   /**
    * redireciona o usuario cadastrado
    */
@@ -123,7 +99,9 @@ export class CadastrarPage implements OnInit {
     return {
       uid: '',
       email: this.email.value,
-      displayName: this.nome.value
+      displayName: this.nome.value,
+      nivel: 'cliente',
+      verificado: false
     }
   }
 

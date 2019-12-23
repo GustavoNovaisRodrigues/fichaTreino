@@ -1,3 +1,4 @@
+import { ClienteGuardGuard } from './guards/cliente-guard.guard';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -9,15 +10,16 @@ const routes: Routes = [
   },
   {
     path: 'usuario-senha',
-    loadChildren: () => import('./publica/usuario-senha/usuario-senha.module').then( m => m.UsuarioSenhaPageModule)
+    loadChildren: () => import('./publica/usuario-senha/usuario-senha.module').then(m => m.UsuarioSenhaPageModule)
   },
   {
     path: 'cadastrar',
-    loadChildren: () => import('./publica/cadastrar/cadastrar.module').then( m => m.CadastrarPageModule)
+    loadChildren: () => import('./publica/cadastrar/cadastrar.module').then(m => m.CadastrarPageModule)
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./privada/cliente/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    loadChildren: () => import('./privada/cliente/dashboard/dashboard.module').then(m => m.DashboardPageModule),
+    canActivate: [ClienteGuardGuard]
   },
 
 ];
