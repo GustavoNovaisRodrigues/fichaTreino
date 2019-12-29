@@ -1,0 +1,61 @@
+<ion-buttons>
+  <ion-menu-button color="light"></ion-menu-button>
+</ion-buttons>
+
+<ion-content class="ion-no-padding">
+  
+  <h1 class="titulo-page ">
+    <span class="texto ">Gerente<br>DashBoard<br></span>
+    <span class="icone">🏋️‍♀️</span>
+  </h1>
+
+  <div class="div-container ">
+
+    <ion-list style="width: 100%;">
+      <ion-list-header>
+        Usuarios
+      </ion-list-header>
+      <ion-item *ngFor="let item of professores">
+        <ion-label>
+
+          <ng-container *ngIf="item.verificado; else elseTemplate">
+            <ion-note color="success">Verificado</ion-note>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <ion-note color="danger">Não verificado</ion-note>
+          </ng-template>
+          
+          
+          <h2>{{ item.level }}</h2>
+          <h3>{{ item.nome }}</h3>
+          <p>{{ item.email }}</p>
+        </ion-label>
+
+        <ion-button slot="end" fill="clear" color="light">
+          <ion-icon slot="icon-only" name="more"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+    </ion-list>
+
+    <!-- <pre>
+
+        {{ usuario | async | json }}
+      </pre> -->
+    <!-- 
+    <a class="btn-outline" (click)="deslogar()">
+      <span class="nome">
+        <ion-icon class="logo" slot="start" name="log-out"></ion-icon>
+        Deslogar
+      </span>
+      <ion-icon class="arrow" slot="start" name="ios-arrow-forward"></ion-icon>
+    </a> -->
+    <!-- div-container -->
+  </div>
+
+  <div class="div-footer">
+    <span class="copy  texto-padrao">
+      Copyright © 2019 ACADEMIA. All rights reserved.
+    </span>
+  </div>
+</ion-content>

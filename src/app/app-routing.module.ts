@@ -17,10 +17,16 @@ const routes: Routes = [
     loadChildren: () => import('./publica/cadastrar/cadastrar.module').then(m => m.CadastrarPageModule)
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./privada/cliente/dashboard/dashboard.module').then(m => m.DashboardPageModule),
-    canActivate: [ClienteGuardGuard]
+    path: 'cliente',
+    loadChildren: () => import('./privada/cliente/cliente.module').then(m => m.ClientePageModule),
+    canActivate:[ClienteGuardGuard]
   },
+  {
+    path: 'gerente',
+    loadChildren: () => import('./privada/gerente/gerente.module').then( m => m.GerentePageModule)
+  },
+
+
 
 ];
 

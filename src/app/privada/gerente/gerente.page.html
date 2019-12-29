@@ -1,0 +1,41 @@
+<!-- <ion-content class="ion-no-padding">
+  <h1 class="titulo-page ">
+    <span class="texto ">Gerente Module Page<br></span>
+    <span class="icone">🏋️‍♀️</span>
+  </h1>
+
+  <div class="div-container _marginItens"> -->
+
+<!-- div-container -->
+<!-- </div>
+
+  <div class="div-footer">
+    <span class="copy  texto-padrao">
+      Copyright © 2019 ACADEMIA. All rights reserved.
+    </span>
+  </div>
+</ion-content> 
+(ionSplitPaneVisible)="onSplitPaneVisible(event)"
+-->
+
+<ion-split-pane contentId="menu-content" when="xs" [disabled]="true">
+  <ion-menu contentId="menu-content" menuId="menu-content" side="start" type="overlay">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title color="light">Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let item of pages">
+
+          <ion-item [routerLink]='item.url'>
+            {{item.title}}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="menu-content"></ion-router-outlet>
+</ion-split-pane>

@@ -76,7 +76,7 @@ export class CadastrarPage implements OnInit {
    * redireciona o usuario cadastrado
    */
   private _redirecionar() {
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/cliente/dashboard'])
   }
 
   /*

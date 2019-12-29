@@ -63,7 +63,7 @@ export class UsuarioSenhaPage implements OnInit {
   */
   private _formInit() {
     this.formLogar = this.fb.group({
-      email: ['1client@email.com', [
+      email: ['gerente@email.com', [
         Validators.required,
         Validators.email
       ]],
@@ -81,9 +81,9 @@ export class UsuarioSenhaPage implements OnInit {
       .pipe(take(1))
       .subscribe((usuario) => {
         if (!usuario) return console.log('== usuario nao encontrado==>>');
-        if (usuario.nivel == 'cliente') return this.router.navigate(['/dashboard']);
+        if (usuario.nivel == 'cliente') return this.router.navigate(['/cliente/dashboard']);
         if (usuario.nivel == 'professor') return console.log('==Redireciona professor==>>');
-        if (usuario.nivel == 'gerente') return console.log('==Redireciona gerente==>>');
+        if (usuario.nivel == 'gerente') return this.router.navigate(['/gerente/dashboard']);
       }, null, () => console.log('==> completo!'))
   }
   /*

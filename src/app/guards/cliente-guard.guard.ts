@@ -26,7 +26,16 @@ export class ClienteGuardGuard implements CanActivate, CanActivateChild, CanLoad
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    return this.auth.usuario$.pipe(
+      take(1),
+      map(user => !!user), // <-- map to boolean
+      tap(loggedIn => {
+        if (!loggedIn) {
+          console.log('access denied')
+          this.router.navigate(['/logar']);
+        }
+      })
+    );
   }
   canLoad(
     route: Route,
