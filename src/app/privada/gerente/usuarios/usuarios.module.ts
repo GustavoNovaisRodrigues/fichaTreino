@@ -7,14 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { UsuariosPageRoutingModule } from './usuarios-routing.module';
 
 import { UsuariosPage } from './usuarios.page';
+import { PopoverOptionsPageModule } from '../popover-options/popover-options.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UsuariosPageRoutingModule
+    UsuariosPageRoutingModule,
+    PopoverOptionsPageModule
   ],
-  declarations: [UsuariosPage]
+  declarations: [
+    UsuariosPage,
+  ]
 })
-export class UsuariosPageModule {}
+export class UsuariosPageModule { }

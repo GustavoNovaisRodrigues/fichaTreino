@@ -1,0 +1,41 @@
+.label-base {
+  > .destaque {
+    background-color: $cor-textLink;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: $size-fontBtn;
+    line-height: 28px;
+    &._naoVerificado {
+      background-color: $cor-invalid;
+    }
+    &._verificado {
+      background-color: $cor-acept;
+    }
+  }
+  > .nivel {
+    text-transform: uppercase;
+    color: $cor-textLink;
+    font-weight: bold;
+    font-size: $size-fontMini;
+    line-height: 12px;
+    padding: 5px 0;
+  }
+  > .title {
+    font-weight: 500;
+    font-size: $size-font;
+    line-height: 22px;
+    color: $cor-textLight;
+  }
+  > .text {
+    font-weight: normal;
+    font-size: $size-fontSmall;
+    line-height: 22px;
+    color: $cor-textShade;
+    > ._destaque {
+      font-weight: bold;
+      font-size: $size-font;
+      line-height: 22px;
+      color: $cor-textLink;
+    }
+  }
+}

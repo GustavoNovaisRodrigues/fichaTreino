@@ -6,11 +6,28 @@
 <ion-content class="ion-no-padding">
 
   <h1 class="titulo-page ">
-    <span class="texto ">Gerente<br>usuarios<br></span>
+    <span class="texto ">Gerente<br>/usuarios<br></span>
     <span class="icone">🏋️‍♀️</span>
   </h1>
 
   <div class="div-container ">
+    <!-- (ionChange)="onSearchChange($event)" -->
+    <ion-searchbar class="ion-searchbar" placeholder="Nome ou Email do usuario" inputmode="email" type="decimal"
+      [debounce]="250"></ion-searchbar>
+
+    <ion-list class="ion-list">
+      <ion-item class="item" *ngFor="let item of [1,2,3,4,5,6]">
+        <ion-label class="label-base">
+          <span class="destaque _naoVerificado">não verificado</span>
+          <h4 class="nivel">Usuario:</h4>
+          <h2 class="title">Gustavo Novais Rodrigues </h2>
+          <h3 class="text">gerente@email.com</h3>
+        </ion-label>
+        <ion-button fill="clear" slot="end" class="btn-options" (click)="openPopover($event)">
+          <ion-icon slot="icon-only" name="more"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
 
   </div>
 

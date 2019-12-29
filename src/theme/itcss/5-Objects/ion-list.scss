@@ -1,0 +1,13 @@
+.ion-list {
+  width: 100%;
+  ion-list-header {
+    font-size: $size-fontBig;
+    line-height: 28px;
+    color: $cor-textLight;
+  }
+  ion-item {
+    font-size: $size-fontSmall;
+    line-height: 22px;
+    color: $cor-textShade;
+  }
+}

@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'gerente',
     loadChildren: () => import('./privada/gerente/gerente.module').then( m => m.GerentePageModule)
   },
-
+// TODO add guarda de gerente canActivate:[GerenteGuard]
 
 
 ];

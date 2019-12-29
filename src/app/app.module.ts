@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+
   ],
   providers: [
     StatusBar,

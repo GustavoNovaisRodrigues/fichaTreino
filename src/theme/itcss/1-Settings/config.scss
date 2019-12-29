@@ -1,5 +1,4 @@
 /* Cores */
-
 $cor-bg: #30363d;
 $cor-bg2: #3c444d;
 
@@ -16,11 +15,18 @@ $cor-degrade2: #a154f2;
 
 /* Fonts */
 $font: "Montserrat", sans-serif;
+$size-fontMini: 12px;
+$size-fontSmall: 14px;
 $size-font: 16px;
+$size-fontBig: 18px;
 $size-fontBtn: 10px;
 $size-arrowBtn: 18px;
 $size-logoBtn: 22px;
 :root {
+  //rots do ionic
   --ion-font-family: "Montserrat", sans-serif;
   --ion-background-color: #30363d;
+  --ion-item-border-color: #3c444d;
+  --ion-item-color: #ffffff;
+  --ion-toolbar-color: #ffffff;
 }
