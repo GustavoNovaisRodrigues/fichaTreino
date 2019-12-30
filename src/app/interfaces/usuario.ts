@@ -1,21 +1,21 @@
 export interface Usuario {
+	uid: string;
+	email: string;
+	dataModificacao: Date;
+	verificado: boolean;
+	nivel: string;
 
-    uid:string;
-	email:string;
-	verificado:boolean;
-	nivel:string;
+	displayName?: string;
+	displayNameCaseSensitive?: string;
+	photoURL?: string;
 
-	displayName?:string;
-	displayNameCaseSensitive?:string;	
-	photoURL?:string;
+	idade?: number;
+	genero?: string;
 
-	idade?:number;
-	genero?:string;
-
-	redesSociais?:{
-		instagram:string;
-		facebook:string;
-		twitter:string;
+	redesSociais?: {
+		instagram: string;
+		facebook: string;
+		twitter: string;
 	}
-	treinos?:[]
+	treinos?: []
 }
