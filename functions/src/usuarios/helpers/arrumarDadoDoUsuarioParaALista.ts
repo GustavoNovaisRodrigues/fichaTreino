@@ -1,7 +1,7 @@
 import { Usuario } from './../../../../src/app/interfaces/usuario';
 import { DadosListasDeUsuarios } from '../../interfaces/arrayListasDeUsuarios';
 export function arrumarDadoDoUsuarioParaALista(dadosUsuaio: Usuario) {
-    let {
+    const {
         displayName,
         email,
         nivel,

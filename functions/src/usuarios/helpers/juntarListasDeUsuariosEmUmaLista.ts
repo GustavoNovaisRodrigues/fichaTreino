@@ -6,7 +6,7 @@ import ArrayListasDeUsuarios from '../../interfaces/arrayListasDeUsuarios';
  * @param DB_lista nome do banco de dados da lista
  */
 export async function juntarListasDeUsuariosEmUmaLista(DB_lista: string): Promise<ArrayListasDeUsuarios[] | []> {
-    let listasTemp: ArrayListasDeUsuarios[] = []
+    const listasTemp: ArrayListasDeUsuarios[] = []
     //juntar listas_de_usuarios em uma lista só
     const refListas = admin.firestore().collection(DB_lista)
     await refListas.get().then((params) => {

@@ -7,16 +7,16 @@ import { setNovaListaNaAntiga } from './helpers/setNovaListaNaAntiga';
 
 export async function atualizarListaDeUsuarios(novoValor: Usuario, antigoValor: Usuario) {
     //verificar se houve um UPDATE relevante
-    if (houveMudancasDoValorAntigoComNovo(novoValor, antigoValor)) throw 'Nao Houve alteráções relevantes para a lista'
+    if (houveMudancasDoValorAntigoComNovo(novoValor, antigoValor)) throw new Error('Nao Houve alteráções relevantes para a lista')
 
     //junta todas as listas
-    let listasTemp: ArrayListasDeUsuarios[] = await juntarListasDeUsuariosEmUmaLista(NOME_BANCO_LISTA)
+    const listasTemp: ArrayListasDeUsuarios[] = await juntarListasDeUsuariosEmUmaLista(NOME_BANCO_LISTA)
     //busca indice do usuario que fez o update
     const indiceNovoUsuario: number = listasTemp.findIndex((val: any) => {
         if (!val) return false
         return val[novoValor.uid]
     })
-    if (indiceNovoUsuario <= -1) throw "usuario cadastrado nao existe na lista de usuarios";
+    if (indiceNovoUsuario <= -1) throw  new Error("usuario cadastrado nao existe na lista de usuarios");
     //sobrepõe usuario que foi atualizado nos dados antigos deste na listasTemp
     listasTemp[indiceNovoUsuario] = {
         [novoValor.uid]: {
@@ -29,15 +29,15 @@ export async function atualizarListaDeUsuarios(novoValor: Usuario, antigoValor: 
 }
 
 function houveMudancasDoValorAntigoComNovo(novoValor: any, antigoValor: any) {
-    if (novoValor.displayName == antigoValor.displayName) return false
-    if (novoValor.email == antigoValor.email) return false
-    if (novoValor.nivel == antigoValor.nivel) return false
-    if (novoValor.photoURL == antigoValor.photoURL) return false
-    if (novoValor.uid == antigoValor.uid) return false
-    if (novoValor.verificado == antigoValor.verificado) return false
-    if (novoValor.dataModificacao == antigoValor.dataModificacao) return false
-    if (novoValor.displayNameCaseSensitive == antigoValor.displayNameCaseSensitive) return false
-    if (novoValor.genero == antigoValor.genero) return false
-    if (novoValor.redesSociai == antigoValor.redesSociai) return false
+    if (novoValor.displayName === antigoValor.displayName) return false
+    if (novoValor.email === antigoValor.email) return false
+    if (novoValor.nivel === antigoValor.nivel) return false
+    if (novoValor.photoURL === antigoValor.photoURL) return false
+    if (novoValor.uid === antigoValor.uid) return false
+    if (novoValor.verificado === antigoValor.verificado) return false
+    if (novoValor.dataModificacao === antigoValor.dataModificacao) return false
+    if (novoValor.displayNameCaseSensitive === antigoValor.displayNameCaseSensitive) return false
+    if (novoValor.genero === antigoValor.genero) return false
+    if (novoValor.redesSociai === antigoValor.redesSociai) return false
     return true
 }
