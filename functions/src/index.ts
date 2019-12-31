@@ -1,3 +1,7 @@
+
+export { deleteUsuario } from './usuarios';
+export { updateUsuario } from './usuarios';
+export { createUsuario } from './usuarios';
 // import * as functions from 'firebase-functions';
 // import { memorySizeOf } from "./helpers/calcularTamanhoObjeto";
 // // Start writing Firebase Functions
@@ -20,4 +24,4 @@
 *
 *
 */
-export { createUsuarioTrigger, updateUsuarioTrigger } from './usuarios';
+// 

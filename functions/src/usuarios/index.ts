@@ -5,13 +5,32 @@ import { atualizarListaDeUsuarios } from './atualizarListaDeUsuarios';
 import * as admin from 'firebase-admin';
 import { servico } from '../config';
 import { Usuario } from '../../../src/app/interfaces/usuario';
+import { removerUsuarioDaListaDeUsuarios } from './removerUsuarioDaListaDeUsuarios';
 
 admin.initializeApp({
     credential: admin.credential.cert(JSON.parse(JSON.stringify(servico))),
     databaseURL: "https://fichadetreino-dev.firebaseio.com"
 });
 
-export const createUsuarioTrigger = functions.firestore
+
+export const deleteUsuario = functions.firestore
+    .document(CAMINHO_USUARIOS)
+    .onDelete(async (snap, context) => {
+        try {
+            // Get an object representing the document prior to deletion
+            // e.g. {'name': 'Marie', 'age': 66}
+            const deletedValue = <Usuario>snap.data();
+            const id = snap.id
+            if (deletedValue && id) await removerUsuarioDaListaDeUsuarios(deletedValue, id)
+            return true
+        } catch (error) {
+            console.error('error[deleteUsuarioTrigger]=', error)
+            return false
+        }
+    });
+
+
+export const createUsuario = functions.firestore
     .document(CAMINHO_USUARIOS)
     .onCreate(async (snap, context) => {
         try {
@@ -28,7 +47,7 @@ export const createUsuarioTrigger = functions.firestore
         }
     });
 
-export const updateUsuarioTrigger = functions.firestore
+export const updateUsuario = functions.firestore
     .document(CAMINHO_USUARIOS)
     .onUpdate(async (change, context) => {
         try {
@@ -42,4 +61,5 @@ export const updateUsuarioTrigger = functions.firestore
         }
     });
 
-    //TODO começar o OnDelete() 🤗🤗🤩🤩
+
+
