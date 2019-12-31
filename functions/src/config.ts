@@ -1,0 +1,12 @@
+export const servico = {
+    "type": "service_account",
+    "project_id": "fichadetreino-dev",
+    "private_key_id": "bd17358b2dece1133543bf3c58b44d086f4b985a",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC+rX68dfSAnHE9\nmGOjnWrBN4Wo6LDNvZD6fRPVTTKvDsEVjBVrA+n8wkQCMffo1c0SSINGzblpSUEh\n48l2kHP4+WtrFfToiM1xBMSr5lQYf7CiYPNzcR0/HRPUlvWxLwAZoyWfJh3FuJCi\nZVmE8VEE0InVCRSBhlOUL91d8OblAhAvNm9IC0Hdxgm/T3YX0VDkSPJ2tG4wTbdX\nf2ZsDdh6Ks3ELiE51xRgiT8WkEUGq7mk6IXjU4mu5J8u+R5/4OwMcHqFrHcovjnZ\nXusIc5lZpKH2dSY9jVY+TKwOMgDpji5xq6mbb5xYp61QVm6gkkBAMlQ9YcbsElEF\nRel3lA+FAgMBAAECggEAHdzeNHXkzR+zPIpZUI6e4ZPogwOubQp7Yj+kk4t7nJ8a\n7lz6HcCHLObf79gTk4uoimyA4t3lY+/tG3mpW8BT6XJmuGa/7ItAYar1glaYZR3a\ndBPrDPFyOyg6qtjZsd5CjcFXaw11LDozrLtiwcdpgO+IJq09YOvAuzyj1sqb3tGm\nTHVHOO/lnlxB/4bDPrtkzSHwpEPfpCJPilMOB6WaMDn3hv0TTYfQOnH/Y1kPIo5E\nV2y1HjHGwH05l8F9KALWgSukk/Xb/ZquTMxhZOTAtvOL1XOhavfFoHwuY/DiSrMu\na47wnpzbJmpMZhICUBQJ68149DclH7ieMyJa83GNIQKBgQD1/u6y0iV9oycWeJJK\naT6p8YWutvGIpz2NaGX1Gm8PPjdQxsWFXdT6by6IhI2cErkxLSmsnqev5bKIpb7g\ndABBLAsVzomphWBt9DTw0itxItpPCiUwIVyS4Lib1odIiwHgRD4goT1pSbui2LEy\ngJd/CKPFre/JFLluI93fMryOXwKBgQDGbqUGiBOx6lyyVXxA5RRCkgVdiJPoukyH\nzFDnX+Vf7201iJFBmxUc4SL/d0MMB8QRzbfAdDAEbekB3Cf2YHq+VKt8RSRml9Of\naZYrQ+VyvyoHrKzFqKGvAb+W5hOEzPPVsPxLyC0qy75HHbIx5Y7CBOQJoTOBKWlM\nvRPineukmwKBgQDFGinp8AWIIFTuZVdZ9e/2vQWPExh+lPn1tsOS20ZHYWNy/oE/\nNgqzSqhvTD4m4r2uEHDG1iyn/JTLdnp1X5zgm0iahW25/ZthHn3Yw515PiLLl+Zq\nJSEGsrZYb1DgKDktl6BsBqWtGh4VAikgvPYmHCcU+iQZ6tgUzvo0n3ODYwKBgHiH\nvLW68jufn66zPkYs36GQELI/w5gZkWLrODlShoE/bZaW3aR8Dtb76cZDKvajwPUP\ngA3mhUQrft0iXSPKdsQlqgRR+0pV7rVl7VFabITGmUEQIeHuDEfBSB7gofqIg5PJ\nbXaaoNTd7TZFU3f7eDthvSIcSKyr+soiD3IXeosBAoGBAK0WPMpT8IO17yjOXBg8\nYSiHnAia+8fm1X8EOAXYkfnVamtl8HJCob/Mtn0UA8kVR/1NBWEwXlfpdnClUYC3\na3+tJ8bZFM1mvQHRODaWBa4E7kwyw0/Q9qorI1XQbwV9LhENjE3HopahLtB5zDRV\n+p4+6ipfb2KXWS3jtzi4X9Wu\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-8kw2n@fichadetreino-dev.iam.gserviceaccount.com",
+    "client_id": "113666102572303261463",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-8kw2n%40fichadetreino-dev.iam.gserviceaccount.com"
+  }

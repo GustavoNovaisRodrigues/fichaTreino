@@ -1,4 +1,4 @@
-import * as functions from 'firebase-functions';
+// import * as functions from 'firebase-functions';
 // import { memorySizeOf } from "./helpers/calcularTamanhoObjeto";
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
@@ -20,8 +20,4 @@ import * as functions from 'firebase-functions';
 *
 *
 */
-exports.usuarioListas = functions.firestore.document('usuarios/{userId}')
-    .onWrite((change, context) => {
-
-
-    });
+export { createUsuarioTrigger, updateUsuarioTrigger } from './usuarios';
